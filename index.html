@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance Calculator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      width: 350px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #4a4a8d;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background: #5a2ecf;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 100%;
+    }
+
+    button:hover {
+      background: #4622a6;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.1em;
+      font-weight: bold;
+      padding: 12px;
+      border-radius: 8px;
+    }
+
+    .success {
+      background: #e6f9ee;
+      color: #1e7d3d;
+      border: 1px solid #1e7d3d;
+    }
+
+    .error {
+      background: #fdeaea;
+      color: #a52828;
+      border: 1px solid #a52828;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>📊 Attendance Calculator</h2>
+    
+    <label for="attended">Classes Attended:</label>
+    <input type="number" id="attended" placeholder="e.g. 30">
+
+    <label for="total">Total Classes:</label>
+    <input type="number" id="total" placeholder="e.g. 40">
+
+    <button onclick="calculateAttendance()">Calculate</button>
+
+    <div class="result" id="output"></div>
+  </div>
+
+  <script>
+    function calculateAttendance() {
+      let attended = parseInt(document.getElementById("attended").value);
+      let total = parseInt(document.getElementById("total").value);
+      let output = document.getElementById("output");
+
+      if (isNaN(attended) || isNaN(total) || attended > total || attended < 0) {
+        output.className = "result error";
+        output.innerHTML = "⚠️ Please enter valid numbers.";
+        return;
+      }
+
+      let currentPercentage = (attended / total) * 100;
+
+      if (currentPercentage >= 75) {
+        output.className = "result success";
+        output.innerHTML = `✅ Your attendance is ${currentPercentage.toFixed(2)}%. <br/>Batikipoyyav! 🎉`;
+      } else {
+        let required = Math.ceil((0.75 * total - attended) / 0.25);
+        output.className = "result error";
+        output.innerHTML = `❌ Your attendance is ${currentPercentage.toFixed(2)}%.<br>
+        Itlaithe kastame! <br/>You need to attend at least <b>${required}</b> more consecutive classes to reach 75%.`;
+      }
+    }
+  </script>
+</body>
+</html>
