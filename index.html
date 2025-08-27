@@ -1,6 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artisan Story Weaver</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <meta name="color-scheme" content="light dark" />
+</head>
+<body>
+  <header class="app-header" role="banner">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">✦</span>
+      <h1>Artisan Story Weaver</h1>
+    </div>
+    <p class="tagline">Handcrafted tales from raw moments</p>
+  </header>
+
+  <main class="container" role="main">
+    <section class="card form-card" aria-labelledby="formTitle">
+      <h2 id="formTitle">Share the raw artisan story</h2>
+
+      <div class="uploader" id="dropZone" aria-label="Media uploader" tabindex="0">
+        <input id="fileInput" class="sr-only" type="file" accept="image/*,video/*" multiple aria-label="Choose images or videos" />
+        <div class="uploader-inner">
+          <div class="uploader-cta">
+            <button id="browseBtn" class="btn secondary" type="button">Browse files</button>
+            <p>or drag & drop images/videos here</p>
+            <small>Accepted: JPG, PNG, GIF, MP4, MOV, WEBM • up to ~100MB each</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="inputs">
+        <label for="contextText">Additional context (optional)</label>
+        <textarea id="contextText" rows="4" placeholder="Add names, materials, origins, techniques, dates, emotions..."></textarea>
+
+        <label for="toneSelect">Story tone</label>
+        <select id="toneSelect" aria-label="Choose a tone">
+          <option value="warm">Warm & heartfelt</option>
+          <option value="celebratory">Celebratory & proud</option>
+          <option value="humble">Humble & grounded</option>
+          <option value="documentary">Documentary & factual</option>
+          <option value="poetic">Poetic & evocative</option>
+          <option value="energetic">Energetic & bold</option>
+          <option value="reverent">Reverent & timeless</option>
+          <option value="minimalist">Minimalist & crisp</option>
+        </select>
+
+        <label class="consent">
+          <input type="checkbox" id="consentChk" />
+          I consent to the media and text being used to generate stories enhanced by AI.
+        </label>
+      </div>
+
+      <div class="actions">
+        <button id="generateBtn" class="btn primary" type="button" disabled>Generate Stories</button>
+      </div>
+    </section>
+
+    <section class="card preview-card" aria-labelledby="previewTitle">
+      <h2 id="previewTitle">Selected media</h2>
+      <div id="previewGrid" class="preview-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="card results-card" aria-labelledby="resultsTitle">
+      <div class="results-header">
+        <h2 id="resultsTitle">Stories</h2>
+        <div id="status" class="status" aria-live="polite"></div>
+      </div>
+      <div id="storiesContainer" class="stories-grid"></div>
+    </section>
+  </main>
+
+  <footer class="app-footer" role="contentinfo">
+    <p>Made with care for artisans and their crafts.</p>
+  </footer>
+
+  <script src="./script.js" defer></script>
+  <noscript>
+    <p style="padding:16px">This app requires JavaScript to generate previews and stories.</p>
+  </noscript>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Attendance Calculator</title>
